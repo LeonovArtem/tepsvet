@@ -1,0 +1,222 @@
+html,
+body {
+    height: 100%;
+}
+
+.wrap {
+    min-height: 100%;
+    height: auto;
+    margin: 0 auto -60px;
+    padding: 0 0 60px;
+}
+
+.wrap > .container {
+    padding: 70px 15px 20px;
+}
+
+.footer {
+    font-size: 18px;
+    height: 60px;
+    background-color: #e6ebec;
+    border-top: 1px solid #ecebec;
+    padding-top: 20px;
+}
+
+.jumbotron {
+    text-align: center;
+    background-color: transparent;
+}
+
+.jumbotron .btn {
+    font-size: 21px;
+    padding: 14px 24px;
+}
+
+.not-set {
+    color: #c55;
+    font-style: italic;
+}
+
+/* add sorting icons to gridview sort links */
+a.asc:after, a.desc:after {
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    padding-left: 5px;
+}
+
+a.asc:after {
+    content: /*"\e113"*/ "\e151";
+}
+
+a.desc:after {
+    content: /*"\e114"*/ "\e152";
+}
+
+.sort-numerical a.asc:after {
+    content: "\e153";
+}
+
+.sort-numerical a.desc:after {
+    content: "\e154";
+}
+
+.sort-ordinal a.asc:after {
+    content: "\e155";
+}
+
+.sort-ordinal a.desc:after {
+    content: "\e156";
+}
+
+.grid-view th {
+    white-space: nowrap;
+}
+
+.hint-block {
+    display: block;
+    margin-top: 5px;
+    color: #999;
+}
+
+.error-summary {
+    color: #a94442;
+    background: #fdf7f7;
+    border-left: 3px solid #eed3d7;
+    padding: 10px 20px;
+    margin: 0 0 15px 0;
+}
+
+.nav li > form > button.logout {
+    padding: 15px;
+    border: none;
+}
+
+@media (max-width: 767px) {
+    .nav li > form > button.logout {
+        display: block;
+        text-align: left;
+        width: 100%;
+        padding: 10px 15px;
+    }
+}
+
+.nav > li > form > button.logout:focus,
+.nav > li > form > button.logout:hover {
+    text-decoration: none;
+}
+
+.nav > li > form > button.logout:focus {
+    outline: none;
+}
+
+/*template*/
+.main-ico {
+    font-size: 25px;
+    padding-right: 15px;
+}
+
+/*bootstrap*/
+.navbar-default {
+    background-color: #0063b0;
+    border-color: #337ab7;
+    box-shadow: 0 2px 45px rgb(91, 192, 222);
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: #fff;
+}
+
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+    color: #fff;
+    background-color: #1e3685;
+}
+
+.navbar-default .navbar-toggle {
+    border-color: #5bc0de;
+}
+
+.navbar-toggle {
+    background-color: white;
+}
+
+.list-group-item strong {
+    color: #337ab7;
+}
+
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+    background-color: #d9edf7;
+    -webkit-transition: -webkit-transform .6s ease-in-out;
+    -o-transition: -o-transform .6s ease-in-out;
+    transition: transform .6s ease-in-out;
+}
+
+.navbar-default .navbar-brand {
+    color: #fff;
+}
+
+.navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
+    text-shadow: 0 0 12px white, 0 0 1em #1e3685;
+    color: #fff;
+}
+
+.img-responsive, .thumbnail > img, .thumbnail a > img, .carousel-inner > .item > img, .carousel-inner > .item > a > img {
+    display: block;
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    max-height: 728px;
+}
+
+.thumbnail > img {
+    max-width: 105px;
+    box-shadow: 0 2px 20px rgba(34, 30, 31, 0.4);
+}
+
+.panel-info > .panel-heading {
+    background-color: #03a9f4;
+    color: #333;
+}
+
+/*Catalog*/
+.catalog-image img {
+    min-width: 150px;
+}
+
+.catalog-format {
+    padding-top: 19px;
+}
+
+.table-catalog > thead > tr > th {
+    text-align: center;
+    background-color: #f5f5f5;
+    color: #337ab7;
+}
+
+.text-default {
+    color: #000;
+    text-shadow: none;
+}
+
+/*Document Scroll arrow*/
+.go-to-top {
+    cursor: pointer;
+    display: none;
+    position: fixed;
+    bottom: 45px;
+    right: 15px;
+}
+
+.go-to-top .btn-lg {
+    padding: 10px 15px;
+    border-radius: 3px;
+}
+
+.btn-primary:hover {
+    background-color: #5bc0de;
+    border-color: #fff;
+}
