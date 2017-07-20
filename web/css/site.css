@@ -207,8 +207,8 @@ a.desc:after {
     cursor: pointer;
     display: none;
     position: fixed;
-    bottom: 45px;
-    right: 15px;
+    bottom: 15px;
+    left: 15px;
 }
 
 .go-to-top .btn-lg {

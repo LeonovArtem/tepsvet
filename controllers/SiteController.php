@@ -3,15 +3,17 @@
 namespace app\controllers;
 
 use phpDocumentor\Reflection\Types\This;
+use yii\helpers\Html;
 use Yii;
 use yii\filters\AccessControl;
-use yii\helpers\Html;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
+use yii\data\Pagination;
+
 use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\Lamps;
-use yii\data\Pagination;
+use app\models\Technologies;
 
 class SiteController extends Controller
 {
@@ -129,7 +131,13 @@ class SiteController extends Controller
 
     public function actionHighTech()
     {
-        return $this->render('high-tech');
+        $this->view->title = 'Технологии';
+        $this->view->params['breadcrumbs'][] = [
+            'label' => $this->view->title,
+//            'url' => ['/site/high-tech']
+        ];
+        $posts = Technologies::find()->all();
+        return $this->render('high-tech', compact('posts'));
     }
 
     public function actionCatalog($cap = '', $shape = '')

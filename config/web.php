@@ -4,10 +4,18 @@ $params = require(__DIR__ . '/params.php');
 
 $config = [
     'id' => 'basic',
+    'name' => 'Теплый свет',
     'basePath' => dirname(__DIR__),
 //    'bootstrap' => ['log'],
-    'language'=>'ru',
+    'language' => 'ru',
     'defaultRoute' => 'site',
+    'modules' => [
+        'admin' => [
+            'class' => 'app\modules\admin\Modules',
+            'layout' => 'admin',
+//            'defaultRoute' => 'lamps/index'
+        ],
+    ],
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
@@ -53,6 +61,17 @@ $config = [
 //                '<action:\w+>' => 'site/<action>',
             ],
         ],
+    ],
+    'controllerMap' => [
+        'elfinder' => [
+            'class' => 'mihaildev\elfinder\PathController',
+            'access' => ['@'],
+            'root' => [
+                'path' => 'uploads',
+                'name' => 'Каталог'
+            ],
+
+        ]
     ],
     'params' => $params,
 ];
