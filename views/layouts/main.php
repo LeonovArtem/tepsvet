@@ -45,16 +45,29 @@ AppAsset::register($this);
             ['label' => 'Советы', 'url' => ['/site/advice']],
             ['label' => 'Контаткы', 'url' => ['/site/contact']],
             Yii::$app->user->isGuest ? (
-            ['label' => 'Login', 'url' => ['/site/login']]
+            ['label' => 'Войти', 'url' => ['/site/login']]
             ) : (
-                '<li>'
-                . Html::beginForm(['/site/logout'], 'post')
-                . Html::submitButton(
-                    'Logout (' . Yii::$app->user->identity->username . ')',
-                    ['class' => 'btn btn-link logout']
-                )
-                . Html::endForm()
-                . '</li>'
+//                '<li>'
+//                . Html::beginForm(['/site/logout'], 'post')
+//                . Html::submitButton(
+//                    'Выйти (' . Yii::$app->user->identity->username . ')',
+//                    ['class' => 'btn btn-link logout']
+//                )
+//                . Html::endForm()
+//                . '</li>'
+            ['label' => Yii::$app->user->identity->username, 'url' => ['/site/logout',['method'=>'POST']],
+                'items' => [
+                    ['label' => 'Панель администартора', 'url' => ['/admin']],
+                    (                '<li>'
+                        . Html::beginForm(['/site/logout'], 'post')
+                        . Html::submitButton(
+                            'Выйти',
+                            ['class' => 'btn btn-link logout']
+                        )
+                        . Html::endForm()
+                        . '</li>')
+                ]
+            ]
             )
         ],
     ]);

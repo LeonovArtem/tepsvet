@@ -7,16 +7,14 @@ use yii\widgets\DetailView;
 /* @var $model app\modules\admin\models\Catalog */
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Catalogs', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Каталог', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="catalog-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+        <?= Html::a('Обновить', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Удалить', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => 'Are you sure you want to delete this item?',
@@ -29,9 +27,15 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'status',
+            [
+                'attribute' => 'status',
+                'value' => function ($data) {
+                    return $data->status ? '<span class="text-success"><strong>Активен</strong></span>' : '<span class="text-danger"><strong>Не активен</strong></span>';
+                },
+                'format' => 'html'
+            ],
             'name:ntext',
-            'img:ntext',
+            'img:image',
             'file_size',
             'file_puth_pdf:ntext',
         ],

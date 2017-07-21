@@ -164,6 +164,14 @@ a.desc:after {
     color: #fff;
 }
 
+.navbar-default .btn-link {
+    color: #444;
+    padding-left: 20px !important;
+}
+.navbar-default .btn-link:hover{
+    color: red;
+}
+
 .img-responsive, .thumbnail > img, .thumbnail a > img, .carousel-inner > .item > img, .carousel-inner > .item > a > img {
     display: block;
     max-width: 100%;

@@ -14,6 +14,7 @@ use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\Lamps;
 use app\models\Technologies;
+use app\models\Catalog;
 
 class SiteController extends Controller
 {
@@ -66,7 +67,8 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $catalog = Catalog::find()->where(['status' => 1])->all();
+        return $this->render('index', compact('catalog'));
     }
 
     /**
@@ -126,7 +128,8 @@ class SiteController extends Controller
 
     public function actionProfit()
     {
-        return $this->render('profit');
+        $catalog = Catalog::find()->where(['status' => 1])->all();
+        return $this->render('profit', compact('catalog'));
     }
 
     public function actionHighTech()

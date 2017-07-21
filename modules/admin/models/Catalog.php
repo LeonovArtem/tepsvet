@@ -30,6 +30,7 @@ class Catalog extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['name', 'img', 'file_puth_pdf'], 'required'],
             [['status'], 'integer'],
             [['name', 'img', 'file_puth_pdf'], 'string'],
             [['file_size'], 'number'],
@@ -46,7 +47,7 @@ class Catalog extends \yii\db\ActiveRecord
             'status' => 'Активность',
             'name' => 'Заголовок',
             'img' => 'Изображение',
-            'file_size' => 'Размер файла',
+            'file_size' => 'Размер файла (Мб)',
             'file_puth_pdf' => 'Файл каталога(pdf)',
         ];
     }

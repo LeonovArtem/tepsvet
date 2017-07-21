@@ -17,8 +17,6 @@ mihaildev\elfinder\Assets::noConflict($this);
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'status')->checkbox(['0', '1',]) ?>
-
     <?= $form->field($model, 'name')->textarea(['rows' => 1]) ?>
 
     <!--    --><? //= $form->field($model, 'img')->textarea(['rows' => 2]) ?>
@@ -48,6 +46,8 @@ mihaildev\elfinder\Assets::noConflict($this);
         'path' => 'catalog_pdf',
         'multiple' => false
     ]); ?>
+
+    <?= $form->field($model, 'status')->checkbox(['0', '1',]) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Создать' : 'Обновить', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

@@ -34,7 +34,7 @@
                     ['label' => 'Главная', 'icon' => 'home', 'url' => ['default/']],
                     ['label' => 'Лампы', 'icon' => 'lightbulb-o', 'url' => ['lamps/']],
                     ['label' => 'Каталог (PDF)', 'icon' => 'file-pdf-o', 'url' => ['catalog/']],
-                    ['label' => 'Слайдер', 'icon' => 'sliders', 'url' => ['lamps/']],
+                    ['label' => 'Слайдер', 'icon' => 'sliders', 'url' => ['slider/']],
                     [
                         'label' => 'Статьи',
                         'icon' => 'newspaper-o',

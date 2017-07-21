@@ -2,12 +2,15 @@
 use yii\bootstrap\Modal;
 use yii\widgets\Pjax;
 
-$this->title = 'Админка';
+$this->title = 'Для контент менеджера';
 $this->params['breadcrumbs'][] = $this->title; ?>
 
 <div class="admin-default-index">
     <!--        <h1>--><? //= $this->context->action->uniqueId ?><!--</h1>-->
-    <h2>Документация по использованию:</h2>
+    <div class="box-header with-border">
+        <h3 class="box-title">Документация по использованию:</h3>
+    </div>
+    <br>
     <div class="row">
         <div class="col-lg-3 col-xs-6">
             <a href="">

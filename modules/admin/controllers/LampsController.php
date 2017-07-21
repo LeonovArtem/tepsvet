@@ -4,7 +4,7 @@ namespace app\modules\admin\controllers;
 
 use Yii;
 use app\modules\admin\models\Lamps;
-use yii\data\ActiveDataProvider;
+use app\modules\admin\models\LampsSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -35,11 +35,11 @@ class LampsController extends Controller
      */
     public function actionIndex()
     {
-        $dataProvider = new ActiveDataProvider([
-            'query' => Lamps::find(),
-        ]);
+        $searchModel = new LampsSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
+            'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
@@ -118,7 +118,7 @@ class LampsController extends Controller
         if (($model = Lamps::findOne($id)) !== null) {
             return $model;
         } else {
-            throw new NotFoundHttpException('Запрошенная страница не существует.');
+            throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
 }

@@ -1,8 +1,9 @@
 <?php
 use yii\bootstrap\Carousel;
 use yii\helpers\Html;
+use app\components\ThumbnailCatalogWidget;
 
-$this->title = 'My Yii Application';
+$this->title = Yii::$app->name;
 ?>
 <div class="site-index">
     <div class="body-content">
@@ -45,42 +46,7 @@ $this->title = 'My Yii Application';
             </h3>
         </div>
 
-        <div class="row text-center">
-            <div class="col-lg-6 col-md-6">
-                <div class="media">
-                    <a class="pull-left" href="#">
-                        <?= Html::img('@web/img/catalog/cat_2017_1.png') ?>
-                    </a>
-                    <div class="media-body text-center">
-                        <h4 class="media-heading">Каталог Экола 2017</h4>
-                        <p class="catalog-format">в формате PDF (32Мб)</p>
-                        <div>
-                            <a href="#" class="btn btn-primary" role="button">Посмотреть</a>
-                            <a href="#" class="btn btn-info" role="button">Скачать</a>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            <div class="col-lg-6 col-md-6">
-                <div class="media">
-                    <a class="pull-left" href="#">
-                        <?= Html::img('@web/img/catalog/cat_2017_2.png') ?>
-                    </a>
-                    <div class="media-body text-center">
-                        <h4 class="media-heading">Каталог Экола Светильники GX53 и GX70 встраиваемые и накладные</h4>
-                        <p>в формате PDF (24Мб)</p>
-
-                        <div>
-                            <a href="#" class="btn btn-primary" role="button">Посмотреть</a>
-                            <a href="#" class="btn btn-info" role="button">Скачать</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <hr>
+        <?= ThumbnailCatalogWidget::widget(['template' => 'table', 'dataTable' => $catalog]) ?>
 
         <div class="row">
             <div class="col-lg-4">

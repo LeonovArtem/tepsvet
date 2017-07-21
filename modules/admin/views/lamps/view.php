@@ -25,7 +25,17 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
+//            'id',
+            [
+                'attribute' => '',
+                'value' => function ($model) {
+                    $filePath = $_SERVER['DOCUMENT_ROOT'] . '/web/img/catalog/' . ($model->article) . '.png';
+                    if (file_exists($filePath))
+                        return '@web/img/catalog/' . $model->article . '.png';
+                    return '@web/img/absent-img.jpg';
+                },
+                'format' => 'image'
+            ],
             'article',
             'name',
             'power',
