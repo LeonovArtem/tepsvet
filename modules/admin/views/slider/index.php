@@ -18,10 +18,18 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'img:image',
+//            'id',
+            [
+                'attribute' => 'img',
+                'format' => 'raw',
+                'value' => function ($data) {
+                    return Html::img($data->img, [
+                        'style' => 'max-width:500px;'
+                    ]);
+                },
+            ],
             'head:ntext',
-            'content:ntext',
+            'content:html',
             'sort',
 
             ['class' => 'yii\grid\ActionColumn'],

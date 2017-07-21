@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
 
@@ -23,7 +24,16 @@ $this->params['breadcrumbs'][] = $this->title;
 
 //            'id',
 //            'status',
-            'img:image',
+//            'img:image',
+            [
+                'attribute' => 'img',
+                'format' => 'raw',
+                'value' => function ($data) {
+                    return Html::img($data->img, [
+                        'style' => 'max-width:150px;'
+                    ]);
+                },
+            ],
             [
                 'attribute' => 'status',
                 'value' => function ($data) {

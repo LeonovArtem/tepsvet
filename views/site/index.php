@@ -9,22 +9,24 @@ $this->title = Yii::$app->name;
     <div class="body-content">
         <div class="row">
             <div class="col-lg-12">
+
                 <?= Carousel::widget([
-                    'items' => [
-                        [
-                            'content' => Html::img('@web/img/main-slider/slider-1.png'),
-                            'caption' => '<h3>Светодиодные и энергосберегающие лампы</h3>' .
-                                '<p><span class="text-default">эффективные</span> ("светят, но не греют". Это позволяет снять ограничения по мощности для отдельных светильников и квартиры в целом).</p>'
-
-                        ],
-                        [
-                            'content' => Html::img('@web/img/main-slider/slider-2.png'),
-                            'caption' => '<h3>Светодиодные и энергосберегающие лампы</h3>' .
-                                '<p><span class="text-default">экономичные</span> (уменьшают затраты на освещение в 5-10 раз)</p>' .
-                                '<p><span class="text-default">долговечные</span> (до 30000 часов непрерывной работы)</p>'
-                        ],
-
-                    ],
+                    'items' => $slider,
+//                        [
+//                            [
+//                                'content' => Html::img('@web/img/main-slider/slider-1.png'),
+//                                'caption' => '<h3>Светодиодные и энергосберегающие лампы</h3>' .
+//                                    '<p><span class="text-default">эффективные</span> ("светят, но не греют". Это позволяет снять ограничения по мощности для отдельных светильников и квартиры в целом).</p>'
+//
+//                            ],
+//                            [
+//                                'content' => Html::img('@web/img/main-slider/slider-2.png'),
+//                                'caption' => '<h3>Светодиодные и энергосберегающие лампы</h3>' .
+//                                    '<p><span class="text-default">экономичные</span> (уменьшают затраты на освещение в 5-10 раз)</p>' .
+//                                    '<p><span class="text-default">долговечные</span> (до 30000 часов непрерывной работы)</p>'
+//                            ],
+//
+//                        ],
                     'options' => [
                         'style' => 'width:100%', // Задаем ширину контейнера
                         'class' => 'carousel slide',

@@ -15,6 +15,7 @@ use app\models\ContactForm;
 use app\models\Lamps;
 use app\models\Technologies;
 use app\models\Catalog;
+use app\models\Slider;
 
 class SiteController extends Controller
 {
@@ -68,7 +69,8 @@ class SiteController extends Controller
     public function actionIndex()
     {
         $catalog = Catalog::find()->where(['status' => 1])->all();
-        return $this->render('index', compact('catalog'));
+        $slider = Slider::find()->orderBy(['id' => SORT_DESC])->all();
+        return $this->render('index', compact('catalog','slider'));
     }
 
     /**

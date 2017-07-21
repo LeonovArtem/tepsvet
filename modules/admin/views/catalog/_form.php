@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+
 use mihaildev\elfinder\InputFile;
 use mihaildev\elfinder\ElFinder;
 use yii\web\JsExpression;
@@ -19,7 +20,7 @@ mihaildev\elfinder\Assets::noConflict($this);
 
     <?= $form->field($model, 'name')->textarea(['rows' => 1]) ?>
 
-    <!--    --><? //= $form->field($model, 'img')->textarea(['rows' => 2]) ?>
+
     <?= $form->field($model, 'img')->widget(InputFile::className(), [
         'language' => 'ru',
         'controller' => 'elfinder', // вставляем название контроллера, по умолчанию равен elfinder
@@ -34,7 +35,7 @@ mihaildev\elfinder\Assets::noConflict($this);
 
     <!--    --><? //= $form->field($model, 'file_size')->textInput() ?>
 
-    <!--    --><? //= $form->field($model, 'file_puth_pdf')->textarea(['rows' => 1]) ?>
+
     <?= $form->field($model, 'file_puth_pdf')->widget(InputFile::className(), [
         'language' => 'ru',
         'controller' => 'elfinder',
