@@ -1,26 +1,26 @@
 <?php
 
 namespace app\modules\admin\models;
-use yii\db\ActiveRecord;
 
+use Yii;
 
 /**
- * This is the model class for table "{{%slider}}".
+ * This is the model class for table "{{%advice}}".
  *
  * @property integer $id
- * @property string $img
- * @property string $content
- * @property string $caption
  * @property integer $sort
+ * @property string $url
+ * @property string $head
+ * @property string $content
  */
-class Slider extends ActiveRecord
+class Advice extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return '{{%slider}}';
+        return '{{%advice}}';
     }
 
     /**
@@ -29,9 +29,9 @@ class Slider extends ActiveRecord
     public function rules()
     {
         return [
-            [['img'], 'required'],
-            [['img', 'content', 'caption'], 'string'],
             [['sort'], 'integer'],
+            [['url'], 'required'],
+            [['url', 'head', 'content'], 'string'],
         ];
     }
 
@@ -41,11 +41,11 @@ class Slider extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'img' => 'Изображение',
-            'content' => 'Заголовок',
-            'caption' => 'Контент',
+//            'id' => 'ID',
             'sort' => 'Сортировка',
+            'url' => 'Url',
+            'head' => 'Заголовок',
+            'content' => 'Контент',
         ];
     }
 }

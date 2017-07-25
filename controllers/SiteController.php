@@ -14,6 +14,7 @@ use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\Lamps;
 use app\models\Technologies;
+use app\models\Advice;
 use app\models\Catalog;
 use app\models\Slider;
 
@@ -69,8 +70,19 @@ class SiteController extends Controller
     public function actionIndex()
     {
         $catalog = Catalog::find()->where(['status' => 1])->all();
-        $slider = Slider::find()->orderBy(['id' => SORT_DESC])->all();
-        return $this->render('index', compact('catalog','slider'));
+        $slider = Slider::getItemSlider();
+        return $this->render('index', compact('catalog', 'slider'));
+    }
+
+    public function actionDownloadFile()
+    {
+        if ($id = Yii::$app->request->post('id')) {
+            $file = Catalog::findOne($id);
+            if ($file === null) {
+                throw new NotFoundHttpException('Файл не найден');
+            }
+            return Yii::$app->response->sendFile($_SERVER['DOCUMENT_ROOT'] . $file->file_puth_pdf);
+        }
     }
 
     /**
@@ -112,20 +124,26 @@ class SiteController extends Controller
      */
     public function actionContact()
     {
-        $model = new ContactForm();
-        if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
-            Yii::$app->session->setFlash('contactFormSubmitted');
-
-            return $this->refresh();
-        }
-        return $this->render('contact', [
-            'model' => $model,
-        ]);
+//        $model = new ContactForm();
+//        if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
+//            Yii::$app->session->setFlash('contactFormSubmitted');
+//
+//            return $this->refresh();
+//        }
+        return $this->render('contacts');
     }
 
-    public function actionAdvice()
+    public function actionAdvice($url = '')
     {
-        return $this->render('advice');
+        $this->view->title = 'Советы';
+        $this->view->params['breadcrumbs'][] = ['label' => $this->view->title];
+        $query = Advice::find()->orderBy('sort');
+        $postMenu = $query->all();
+
+        $query->filterWhere(['url' => $url ? $url : 'home']);
+        $post = $query->one();
+
+        return $this->render('advice', compact('postMenu', 'post'));
     }
 
     public function actionProfit()
@@ -134,18 +152,20 @@ class SiteController extends Controller
         return $this->render('profit', compact('catalog'));
     }
 
-    public function actionHighTech()
+    public function actionHightech($url = '')
     {
         $this->view->title = 'Технологии';
-        $this->view->params['breadcrumbs'][] = [
-            'label' => $this->view->title,
-//            'url' => ['/site/high-tech']
-        ];
-        $posts = Technologies::find()->all();
-        return $this->render('high-tech', compact('posts'));
+        $this->view->params['breadcrumbs'][] = ['label' => $this->view->title];
+        $query = Technologies::find()->orderBy('sort');
+        $postMenu = $query->all();
+
+        $query->filterWhere(['url' => $url ? $url : 'hightech']);
+        $post = $query->one();
+
+        return $this->render('high-tech', compact('postMenu', 'post'));
     }
 
-    public function actionCatalog($cap = '', $shape = '')
+    public function actionCatalog($cap = '', $shape = '', $calculate = false)
     {
         $query = Lamps::find();
         $this->view->title = 'Каталог';
@@ -170,7 +190,12 @@ class SiteController extends Controller
                 'forcePageParam' => false
             ]);
         $lamps = $query->asArray()->offset($pages->offset)->limit($pages->limit)->all();
-        return $this->render('catalog', compact('lamps', 'pages', 'leftMenu'));
+        if ($calculate) {
+            $view = 'calculate';
+        } else {
+            $view = 'catalog';
+        }
+        return $this->render($view, compact('lamps', 'pages', 'leftMenu'));
     }
 
     public function actionJobs()

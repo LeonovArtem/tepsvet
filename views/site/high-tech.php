@@ -1,21 +1,15 @@
 <?php
-use yii\helpers\Html;
+use app\components\OneLevelMenuWidget;
+
 ?>
 <div class="row">
     <div class="col-md-3 col-sm-4">
-        <div class="list-group">
-
-            <a class="list-group-item" href="/web/site/high-tech">
-                <i class="glyphicon glyphicon-chevron-right pull-right"></i>
-                Model Generator
-            </a>
-        </div>
+        <?= OneLevelMenuWidget::widget([
+            'urlActive' => $post->url,
+            'sectionMenu' => $postMenu,
+        ]) ?>
     </div>
     <div class="col-md-9 col-sm8">
-        <?php foreach ($posts as $post): ?>
-            <pre>
-        <? print_r($post); ?>
-    </pre>
-        <?php endforeach; ?>
+        <?= $post->content; ?>
     </div>
 </div>

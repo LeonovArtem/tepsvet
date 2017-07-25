@@ -52,13 +52,19 @@ $config = [
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
-//            'suffix' => '.html',
+            'suffix' => '.html',
+//            'enableStrictParsing' => true,
             'rules' => [
-//                '<action>/page/<page:\d+>' => 'site/<action>',
-//                '<controller>/page/<page:\d+>' => '<controller>/index',
-//                '' => 'site/index',
-////                '<action:.+>' => 'site/<action>',
+                [
+                    'pattern' => '(hightech | advice)/<url:\w+>',
+                    'route' => 'site/(hightech | advice)',
+                ],
+                '<action>/page/<page:\d+>' => 'site/<action>',
+                '<controller>/page/<page:\d+>' => '<controller>/index',
 //                '<action:\w+>' => 'site/<action>',
+//                '' => 'site/index',
+
+
             ],
         ],
     ],

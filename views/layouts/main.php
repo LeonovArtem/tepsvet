@@ -39,7 +39,7 @@ AppAsset::register($this);
             ['label' => 'Главная', 'url' => ['/site/index']],
             ['label' => 'О нас', 'url' => ['/site/about']],
             ['label' => 'Каталог', 'url' => ['/site/catalog']],
-            ['label' => 'Технологии', 'url' => ['/site/high-tech']],
+            ['label' => 'Технологии', 'url' => ['/site/hightech']],
             ['label' => 'Экономия', 'url' => ['/site/profit']],
             ['label' => 'Вакансии', 'url' => ['/site/jobs']],
             ['label' => 'Советы', 'url' => ['/site/advice']],
@@ -47,18 +47,10 @@ AppAsset::register($this);
             Yii::$app->user->isGuest ? (
             ['label' => 'Войти', 'url' => ['/site/login']]
             ) : (
-//                '<li>'
-//                . Html::beginForm(['/site/logout'], 'post')
-//                . Html::submitButton(
-//                    'Выйти (' . Yii::$app->user->identity->username . ')',
-//                    ['class' => 'btn btn-link logout']
-//                )
-//                . Html::endForm()
-//                . '</li>'
-            ['label' => Yii::$app->user->identity->username, 'url' => ['/site/logout',['method'=>'POST']],
+            ['label' => Yii::$app->user->identity->username, 'url' => ['/site/logout', ['method' => 'POST']],
                 'items' => [
                     ['label' => 'Панель администартора', 'url' => ['/admin']],
-                    (                '<li>'
+                    ('<li>'
                         . Html::beginForm(['/site/logout'], 'post')
                         . Html::submitButton(
                             'Выйти',

@@ -2,23 +2,39 @@
 
 namespace app\models;
 
-use Yii;
+
+use yii\db\ActiveRecord;
+use yii\helpers\Html;
 
 /**
  * This is the model class for table "ts_slider".
  *
  * @property integer $id
  * @property string $img
- * @property string $head
  * @property string $content
+ * @property string $caption
  * @property integer $sort
  */
-class Slider extends \yii\db\ActiveRecord
+class Slider extends ActiveRecord
 {
+    public static function getItemSlider()
+    {
+        $arrSlide = [];
+        $slider = self::find()->orderBy('sort')->all();
+        foreach ($slider as $item) {
+            $arrSlide[] = [
+                'content' => Html::img($item->img),
+                'caption' => "<h3>{$item->content}</h3>" . "<p>{$item->caption}</p>",
+            ];
+        }
+        return $arrSlide;
+    }
+
     /**
      * @inheritdoc
      */
-    public static function tableName()
+    public
+    static function tableName()
     {
         return 'ts_slider';
     }
@@ -26,11 +42,12 @@ class Slider extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
-    public function rules()
+    public
+    function rules()
     {
         return [
             [['img'], 'required'],
-            [['img', 'head', 'content'], 'string'],
+            [['img', 'content', 'caption'], 'string'],
             [['sort'], 'integer'],
         ];
     }
@@ -38,13 +55,14 @@ class Slider extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
-    public function attributeLabels()
+    public
+    function attributeLabels()
     {
         return [
             'id' => 'ID',
             'img' => 'Изображение',
-            'head' => 'Заголовок',
-            'content' => 'Контент',
+            'content' => 'Заголовок',
+            'caption' => 'Контент',
             'sort' => 'Сортировка',
         ];
     }

@@ -39,13 +39,14 @@
                         'label' => 'Статьи',
                         'icon' => 'newspaper-o',
                         'url' => ['/news'],
-                        'items'=>[
-                            ['label' => 'Советы', 'icon' => 'comments-o', 'url' => ['/gii'],],
-                            ['label' => 'Технологии', 'icon' => 'wrench', 'url' => ['/gii'],],
+                        'items' => [
+                            ['label' => 'Советы', 'icon' => 'comments-o', 'url' => ['advice/']],
+                            ['label' => 'Технологии', 'icon' => 'wrench', 'url' => ['technologies/']],
                         ]
                     ],
                     ['label' => 'Пользователи', 'icon' => 'user-plus', 'url' => ['/news']],
                     ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
+                    ['label' => 'SEO', 'icon' => 'internet-explorer', 'url' => ['meta-pages/']],
                     [
                         'label' => 'Для разработчика',
                         'icon' => 'gears',
@@ -72,6 +73,7 @@
                             ],
                         ],
                     ],
+
                 ],
             ]
         ) ?>

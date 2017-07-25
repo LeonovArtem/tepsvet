@@ -9,24 +9,8 @@ $this->title = Yii::$app->name;
     <div class="body-content">
         <div class="row">
             <div class="col-lg-12">
-
                 <?= Carousel::widget([
                     'items' => $slider,
-//                        [
-//                            [
-//                                'content' => Html::img('@web/img/main-slider/slider-1.png'),
-//                                'caption' => '<h3>Светодиодные и энергосберегающие лампы</h3>' .
-//                                    '<p><span class="text-default">эффективные</span> ("светят, но не греют". Это позволяет снять ограничения по мощности для отдельных светильников и квартиры в целом).</p>'
-//
-//                            ],
-//                            [
-//                                'content' => Html::img('@web/img/main-slider/slider-2.png'),
-//                                'caption' => '<h3>Светодиодные и энергосберегающие лампы</h3>' .
-//                                    '<p><span class="text-default">экономичные</span> (уменьшают затраты на освещение в 5-10 раз)</p>' .
-//                                    '<p><span class="text-default">долговечные</span> (до 30000 часов непрерывной работы)</p>'
-//                            ],
-//
-//                        ],
                     'options' => [
                         'style' => 'width:100%', // Задаем ширину контейнера
                         'class' => 'carousel slide',
@@ -62,7 +46,6 @@ $this->title = Yii::$app->name;
                     и промышленные нужды постоянно увеличивается, поэтому именно экономия электроэнергии становится
                     важной необходимостью для всех и каждого.</p>
 
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/doc/">Подробнее...</a></p>
             </div>
             <div class="col-lg-4">
 
@@ -73,20 +56,20 @@ $this->title = Yii::$app->name;
                 <p> Основной принцип энергосберегающей политики государства: эффективное использование энергетических
                     ресурсов.</p>
 
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/forum/">Рассчитать экономию</a></p>
+                <p>
+                    <?= Html::a('Рассчитать экономию', ['site/catalog', ['calculate' => 'y']], ['class' => 'btn btn-primary']); ?>
+                </p>
             </div>
 
             <div class="col-lg-4">
                 <p><span class="main-ico glyphicon glyphicon-globe"></span> Наша миссия - решение национальной проблемы
-                    энергосбережения и энергоэффективности!
+                    энергосбережения и энергоэффективности!<br>
                     Мы работаем в России, сохраняем её энергетические ресурсы, а, значит, улучшаем условия человеческой
                     жизни.</p>
                 <p>Использование энергоэкономичных источников света - это внедрение энергосберегающих технологий,
                     новый подход к потреблению энергии, вклад в правительственную программу энергосбережения,
                     спасение окружающей среды.</p>
 
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/extensions/">Подробнее...</a>
-                </p>
             </div>
         </div>
 

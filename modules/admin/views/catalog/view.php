@@ -30,9 +30,17 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'status',
                 'value' => function ($data) {
-                    return $data->status ? '<span class="text-success"><strong>Активен</strong></span>' : '<span class="text-danger"><strong>Не активен</strong></span>';
+//                    return $data->status ? '<span class="text-success"><strong>Активен</strong></span>' : '<span class="text-danger"><strong>Не активен</strong></span>';
+                    return \yii\helpers\Html::tag(
+                        'span',
+                        $data->status ? 'Да' : 'Нет',
+                        [
+                            'class' => 'label label-' . ($data->status ? 'success' : 'danger'),
+                        ]
+                    );
                 },
-                'format' => 'html'
+                'format' => 'html',
+
             ],
             'name:ntext',
             'img:image',

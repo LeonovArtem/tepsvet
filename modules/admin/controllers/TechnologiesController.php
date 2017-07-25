@@ -3,16 +3,16 @@
 namespace app\modules\admin\controllers;
 
 use Yii;
-use app\modules\admin\models\Catalog;
-use app\modules\admin\models\CatalogSearch;
-
+use app\modules\admin\models\Technologies;
+use yii\data\ActiveDataProvider;
+use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * CatalogController implements the CRUD actions for Catalog model.
+ * TechnologiesController implements the CRUD actions for Technologies model.
  */
-class CatalogController extends AppAdminController
+class TechnologiesController extends Controller
 {
     /**
      * @inheritdoc
@@ -30,22 +30,22 @@ class CatalogController extends AppAdminController
     }
 
     /**
-     * Lists all Catalog models.
+     * Lists all Technologies models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new CatalogSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider = new ActiveDataProvider([
+            'query' => Technologies::find(),
+        ]);
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
 
     /**
-     * Displays a single Catalog model.
+     * Displays a single Technologies model.
      * @param integer $id
      * @return mixed
      */
@@ -57,13 +57,13 @@ class CatalogController extends AppAdminController
     }
 
     /**
-     * Creates a new Catalog model.
+     * Creates a new Technologies model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Catalog();
+        $model = new Technologies();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -75,7 +75,7 @@ class CatalogController extends AppAdminController
     }
 
     /**
-     * Updates an existing Catalog model.
+     * Updates an existing Technologies model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -94,7 +94,7 @@ class CatalogController extends AppAdminController
     }
 
     /**
-     * Deletes an existing Catalog model.
+     * Deletes an existing Technologies model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -107,15 +107,15 @@ class CatalogController extends AppAdminController
     }
 
     /**
-     * Finds the Catalog model based on its primary key value.
+     * Finds the Technologies model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Catalog the loaded model
+     * @return Technologies the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Catalog::findOne($id)) !== null) {
+        if (($model = Technologies::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

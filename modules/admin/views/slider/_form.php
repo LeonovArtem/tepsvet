@@ -29,9 +29,9 @@ mihaildev\elfinder\Assets::noConflict($this);
         'multiple' => false
     ]); ?>
 
-    <?= $form->field($model, 'head')->textarea(['rows' => 2]) ?>
+    <?= $form->field($model, 'content')->textarea(['rows' => 2]) ?>
 
-    <?= $form->field($model, 'content')->widget(CKEditor::className(), [
+    <?= $form->field($model, 'caption')->widget(CKEditor::className(), [
         'editorOptions' => [
             'preset' => 'basic', //разработанны стандартные настройки basic, standard, full данную возможность не обязательно использовать
             'inline' => false, //по умолчанию false

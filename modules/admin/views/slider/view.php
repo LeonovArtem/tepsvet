@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\modules\admin\models\Slider */
 
-$this->title = $model->head;
+$this->title = $model->content;
 $this->params['breadcrumbs'][] = ['label' => 'Слайдер', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -37,8 +37,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     ]);
                 },
             ],
-            'head:ntext',
-            'content:html',
+            'content:ntext',
+            'caption:html',
             'sort',
         ],
     ]) ?>

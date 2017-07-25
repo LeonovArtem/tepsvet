@@ -19,11 +19,21 @@ use yii\bootstrap\Html;
                             <h4 class="media-heading"><?= $table->name; ?></h4>
                             <p class="catalog-format">в формате PDF (<?= $table->file_size; ?> Мб)</p>
                             <div>
-                                <?= Html::a('Посмотреть', $table->file_puth_pdf,
-                                    ['class' => 'btn btn-' . ($countBtn % 2 ? 'primary' : 'info')]);
+                                <?= Html::a('Посмотреть',
+                                    Yii::getAlias($table->file_puth_pdf),
+                                    ['class' => 'btn btn-' . ($countBtn % 2 ? 'primary' : 'info')]
+                                );
                                 ?>
-                                <?= Html::a('Скачать', $table->file_puth_pdf,
-                                    ['class' => 'btn btn-' . ($countBtn % 2 ? 'info' : 'primary')]);
+                                <?= Html::a('Скачать', ['site/download-file',],
+                                    [
+                                        'class' => 'btn btn-' . ($countBtn % 2 ? 'info' : 'primary'),
+                                        'data' => [
+                                            'method' => 'post',
+                                            'params' => [
+                                                'id' => $table->id,
+                                            ],
+                                        ],
+                                    ]);
                                 ?>
                             </div>
                         </div>

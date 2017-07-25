@@ -2,37 +2,36 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Слайдер на главной странице';
+$this->title = 'Технологии';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="slider-index">
+<div class="technologies-index">
+
     <p>
         <?= Html::a('Добавить ' . '<span class="fa fa-plus"> </span>', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-    <?= GridView::widget([
+    <?php Pjax::begin(); ?>    <?= GridView::widget([
         'dataProvider' => $dataProvider,
+//        'options' => ['style' => 'height: 100px;'],
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
 //            'id',
-            [
-                'attribute' => 'img',
-                'format' => 'raw',
-                'value' => function ($data) {
-                    return Html::img($data->img, [
-                        'style' => 'max-width:500px;'
-                    ]);
-                },
-            ],
-            'content:ntext',
-            'caption:html',
+            'url:ntext',
+            'head:ntext',
+//            [
+//                'attribute' => 'content',
+//                'value' => 'content',
+//                'format' => 'html',
+//            ],
             'sort',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
-</div>
+    <?php Pjax::end(); ?></div>
