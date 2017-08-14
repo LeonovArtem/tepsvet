@@ -2,37 +2,23 @@
 
 namespace app\models;
 
-class User extends \yii\base\Object implements \yii\web\IdentityInterface
+use yii\db\ActiveRecord;
+use yii\web\IdentityInterface;
+
+class User extends ActiveRecord implements IdentityInterface
 {
-    public $id;
-    public $username;
-    public $password;
-    public $authKey;
-    public $accessToken;
-
-    private static $users = [
-        '100' => [
-            'id' => '100',
-            'username' => 'admin',
-            'password' => 'admin',
-            'authKey' => 'test100key',
-            'accessToken' => '100-token',
-        ],
-        '101' => [
-            'id' => '101',
-            'username' => 'demo',
-            'password' => 'demo',
-            'authKey' => 'test101key',
-            'accessToken' => '101-token',
-        ],
-    ];
-
     /**
      * @inheritdoc
+     * Этот метод находит экземпляр identity class, используя ID пользователя. Этот метод используется,
+     * когда необходимо поддерживать состояние аутентификации через сессии.
+     * findIdentityByAccessToken(): Этот метод находит экземпляр identity class, используя токен доступа.
+     * Метод используется, когда требуется аутентифицировать пользователя только по секретному токену
+     * (например в RESTful приложениях, не сохраняющих состояние между запросами).
      */
+
     public static function findIdentity($id)
     {
-        return isset(self::$users[$id]) ? new static(self::$users[$id]) : null;
+        return static::findOne($id);
     }
 
     /**
@@ -40,34 +26,28 @@ class User extends \yii\base\Object implements \yii\web\IdentityInterface
      */
     public static function findIdentityByAccessToken($token, $type = null)
     {
-        foreach (self::$users as $user) {
-            if ($user['accessToken'] === $token) {
-                return new static($user);
-            }
-        }
 
-        return null;
+    }
+
+    public function getStatus()
+    {
+        return $this->hasOne(UserRole::className(), ['id' => 'role']);
     }
 
     /**
      * Finds user by username
      *
-     * @param string $username
+     * @param string $login
      * @return static|null
      */
-    public static function findByUsername($username)
+    public static function findByLogin($login)
     {
-        foreach (self::$users as $user) {
-            if (strcasecmp($user['username'], $username) === 0) {
-                return new static($user);
-            }
-        }
-
-        return null;
+        return static::findOne(['login' => $login]);
     }
 
     /**
      * @inheritdoc
+     * Этот метод возвращает ID пользователя, представленного данным экземпляром identity
      */
     public function getId()
     {
@@ -76,18 +56,22 @@ class User extends \yii\base\Object implements \yii\web\IdentityInterface
 
     /**
      * @inheritdoc
+     * тот метод возвращает ключ, используемый для основанной на cookie аутентификации.
+     * Ключ сохраняется в аутентификационной cookie и позже сравнивается с версией, находящейся на сервере,
+     * чтобы удостоверится, что аутентификационная cookie верная.
      */
     public function getAuthKey()
     {
-        return $this->authKey;
+        return $this->auth_key;
     }
 
     /**
      * @inheritdoc
+     * Этот метод реализует логику проверки ключа для основанной на cookie аутентификации.
      */
     public function validateAuthKey($authKey)
     {
-        return $this->authKey === $authKey;
+        return $this->auth_key === $authKey;
     }
 
     /**
@@ -98,6 +82,14 @@ class User extends \yii\base\Object implements \yii\web\IdentityInterface
      */
     public function validatePassword($password)
     {
-        return $this->password === $password;
+        return \Yii::$app->security->validatePassword($password, $this->password);
+//        ($password==$this->password)?true;
+
     }
+
+    public function generateAuthKey()
+    {
+        $this->auth_key = \Yii::$app->security->generateRandomString();
+    }
+
 }

@@ -12,6 +12,7 @@ use yii\data\Pagination;
 
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\Seo;
 use app\models\Lamps;
 use app\models\Technologies;
 use app\models\Advice;
@@ -20,6 +21,12 @@ use app\models\Slider;
 
 class SiteController extends Controller
 {
+    public function beforeAction($action)
+    {
+        $this->setMetaTag($action->id);
+        return parent::beforeAction($action);
+    }
+
     /**
      * @inheritdoc
      */
@@ -154,8 +161,6 @@ class SiteController extends Controller
 
     public function actionHightech($url = '')
     {
-        $this->view->title = 'Технологии';
-        $this->view->params['breadcrumbs'][] = ['label' => $this->view->title];
         $query = Technologies::find()->orderBy('sort');
         $postMenu = $query->all();
 
@@ -203,6 +208,12 @@ class SiteController extends Controller
         return $this->render('jobs');
     }
 
+    public function actionTest()
+    {
+       echo $sizeMb = filesize($_SERVER['DOCUMENT_ROOT'] . '/web/uploads/catalog_pdf/cat_2017_1.pdf') ;
+//        echo round();
+    }
+
     /**
      * Displays about page.
      *
@@ -210,7 +221,30 @@ class SiteController extends Controller
      */
     public function actionAbout()
     {
+
         return $this->render('about');
+    }
+
+    private function setMetaTag($actionId)
+    {
+        $seo = Seo::find()->filterWhere(['site_action' => $actionId])->one();
+        if (isset($seo->id)) {
+            $this->view->title = $seo->title;
+            $this->view->registerMetaTag(
+                [
+                    'name' => 'keywords',
+                    'content' => $seo->keywords,
+                ]);
+            $this->view->registerMetaTag(
+                [
+                    'name' => 'description',
+                    'content' => $seo->description,
+                ]);
+            $this->view->params['breadcrumbs'][] = $this->view->title;
+
+            return true;
+        }
+        return false;
     }
 
 }

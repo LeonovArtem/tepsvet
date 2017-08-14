@@ -5,29 +5,15 @@ namespace app\modules\admin\controllers;
 use Yii;
 use app\modules\admin\models\Lamps;
 use app\modules\admin\models\LampsSearch;
-use yii\web\Controller;
+
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
+
 
 /**
  * LampsController implements the CRUD actions for Lamps model.
  */
-class LampsController extends Controller
+class LampsController extends AppAdminController
 {
-    /**
-     * @inheritdoc
-     */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
-    }
 
     /**
      * Lists all Lamps models.

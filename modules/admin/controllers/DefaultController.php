@@ -8,9 +8,11 @@ class DefaultController extends AppAdminController
     {
         return $this->render('index');
     }
-    public function actionNews()
-    {
-        return $this->render('news');
-    }
 
+    public function actionSendChat()
+    {
+        if (!empty($_POST)) {
+            echo \sintret\chat\ChatRoom::sendChat($_POST);
+        }
+    }
 }

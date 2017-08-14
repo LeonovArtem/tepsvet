@@ -5,30 +5,15 @@ namespace app\modules\admin\controllers;
 use Yii;
 use app\modules\admin\models\Slider;
 use yii\data\ActiveDataProvider;
-use yii\web\Controller;
+
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
+
 
 /**
  * SliderController implements the CRUD actions for Slider model.
  */
-class SliderController extends Controller
+class SliderController extends AppAdminController
 {
-    /**
-     * @inheritdoc
-     */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
-    }
-
     /**
      * Lists all Slider models.
      * @return mixed
@@ -36,7 +21,7 @@ class SliderController extends Controller
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => Slider::find(),
+            'query' => Slider::find()->orderBy('sort'),
         ]);
 
         return $this->render('index', [

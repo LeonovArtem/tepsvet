@@ -2,7 +2,7 @@
 
 namespace app\modules\admin\controllers;
 
-class MetaPagesController extends \yii\web\Controller
+class MetaPagesController extends AppAdminController
 {
     public function actionIndex()
     {

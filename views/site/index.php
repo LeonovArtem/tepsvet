@@ -24,14 +24,14 @@ $this->title = Yii::$app->name;
             </div>
         </div>
         <hr>
-        <div class="page-header text-center">
+        <div class="text-center">
             <h3>Компания Теплый Свет предлагает Вам
                 <span class="text-info">светодиодные</span>
                 и
                 <span class="text-info">энергосберегающие лампы.</span>
             </h3>
         </div>
-
+        <hr>
         <?= ThumbnailCatalogWidget::widget(['template' => 'table', 'dataTable' => $catalog]) ?>
 
         <div class="row">

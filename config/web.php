@@ -74,7 +74,7 @@ $config = [
             'access' => ['@'],
             'root' => [
                 'path' => 'uploads',
-                'name' => 'Каталог'
+                'name' => 'Загрузки'
             ],
 
         ]

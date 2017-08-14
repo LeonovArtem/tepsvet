@@ -47,7 +47,7 @@ AppAsset::register($this);
             Yii::$app->user->isGuest ? (
             ['label' => 'Войти', 'url' => ['/site/login']]
             ) : (
-            ['label' => Yii::$app->user->identity->username, 'url' => ['/site/logout', ['method' => 'POST']],
+            ['label' => 'В сети: ( '.Yii::$app->user->identity->username .' )', 'url' => ['/site/logout', ['method' => 'POST']],
                 'items' => [
                     ['label' => 'Панель администартора', 'url' => ['/admin']],
                     ('<li>'
@@ -75,7 +75,7 @@ AppAsset::register($this);
 </div>
 
 <footer class="footer">
-    <div class="container">
+    <div class="container text-info">
         <!--        <h4 class="pull-left">&copy; Теплый свет --><? //= date('Y') ?><!--</h4>-->
         <div class="pull-left">
             <p><span class="glyphicon glyphicon-map-marker"></span> г. Москва, ул. Мастеркова, д. 4</p>

@@ -5,30 +5,14 @@ namespace app\modules\admin\controllers;
 use Yii;
 use app\modules\admin\models\Technologies;
 use yii\data\ActiveDataProvider;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
+
 
 /**
  * TechnologiesController implements the CRUD actions for Technologies model.
  */
-class TechnologiesController extends Controller
+class TechnologiesController extends AppAdminController
 {
-    /**
-     * @inheritdoc
-     */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
-    }
-
     /**
      * Lists all Technologies models.
      * @return mixed

@@ -3,35 +3,52 @@
 namespace app\modules\admin\controllers;
 
 use Yii;
-use app\modules\admin\models\Catalog;
-use app\modules\admin\models\CatalogSearch;
-
+use app\modules\admin\models\User;
+use yii\data\ActiveDataProvider;
 use yii\web\NotFoundHttpException;
 
 
 /**
- * CatalogController implements the CRUD actions for Catalog model.
+ * UserController implements the CRUD actions for User model.
+ * Роли: id=1 -Администарторы, id=2 -Контент-менеджеры
  */
-class CatalogController extends AppAdminController
+class UserController extends AppAdminController
 {
 
+//    public function beforeAction($action)
+//    {
+//        $adminRole = 1;
+//        if ($action->id == ('update')) {
+//            if (!Yii::$app->request->get('id') == Yii::$app->user->identity->id) {
+//                return $this->accessDenied();
+//            }
+//        }
+//        return parent::beforeAction($action);
+//
+//    }
+
+    public function accessDenied()
+    {
+        return $this->view('access-denied');
+    }
+
     /**
-     * Lists all Catalog models.
+     * Lists all User models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new CatalogSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider = new ActiveDataProvider([
+            'query' => User::find(),
+        ]);
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
 
     /**
-     * Displays a single Catalog model.
+     * Displays a single User model.
      * @param integer $id
      * @return mixed
      */
@@ -43,18 +60,16 @@ class CatalogController extends AppAdminController
     }
 
     /**
-     * Creates a new Catalog model.
+     * Creates a new User model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Catalog();
+        $model = new User();
 
-        if ($model->load(Yii::$app->request->post())) {
-            $model->setFileSize($model->file_puth_pdf);
-            if ($model->save())
-                return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -63,7 +78,7 @@ class CatalogController extends AppAdminController
     }
 
     /**
-     * Updates an existing Catalog model.
+     * Updates an existing User model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -73,7 +88,7 @@ class CatalogController extends AppAdminController
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post())) {
-            $model->setFileSize($model->file_puth_pdf);
+            $model->generatePassword($model->password);
             if ($model->save())
                 return $this->redirect(['view', 'id' => $model->id]);
         } else {
@@ -84,7 +99,7 @@ class CatalogController extends AppAdminController
     }
 
     /**
-     * Deletes an existing Catalog model.
+     * Deletes an existing User model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -97,18 +112,18 @@ class CatalogController extends AppAdminController
     }
 
     /**
-     * Finds the Catalog model based on its primary key value.
+     * Finds the User model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Catalog the loaded model
+     * @return User the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Catalog::findOne($id)) !== null) {
+        if (($model = User::findOne($id)) !== null) {
             return $model;
         } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
+            throw new NotFoundHttpException('Запрошенная страница не существует.');
         }
     }
 }

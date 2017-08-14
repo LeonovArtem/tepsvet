@@ -5,10 +5,14 @@
         <!-- Sidebar user panel -->
         <div class="user-panel">
             <div class="pull-left image">
-                <img src="<?= $directoryAsset ?>/img/user2-160x160.jpg" class="img-circle" alt="User Image"/>
+                <!--                <img src="-->
+                <? //= $directoryAsset ?><!--/img/user2-160x160.jpg" class="img-circle" alt="User Image"/>-->
+                <img src="<?= Yii::$app->user->identity->img_profil; ?>" class="img-circle" alt="User Image"/>
+
             </div>
             <div class="pull-left info">
-                <p>Администратор</p>
+
+                <p><?= Yii::$app->user->identity->status->name ?></p>
 
                 <a href="#"><i class="fa fa-circle text-success"></i> В сети</a>
             </div>
@@ -44,33 +48,38 @@
                             ['label' => 'Технологии', 'icon' => 'wrench', 'url' => ['technologies/']],
                         ]
                     ],
-                    ['label' => 'Пользователи', 'icon' => 'user-plus', 'url' => ['/news']],
-                    ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
-                    ['label' => 'SEO', 'icon' => 'internet-explorer', 'url' => ['meta-pages/']],
+                    ['label' => 'SEO', 'icon' => 'internet-explorer', 'url' => ['seo/']],
+                    [
+                        'label' => 'Пользователи',
+                        'icon' => 'user-plus',
+                        'url' => ['user/'],
+                        'visible' => Yii::$app->user->identity->status->id == 1,
+                    ],
                     [
                         'label' => 'Для разработчика',
                         'icon' => 'gears',
                         'url' => '#',
+                        'visible' => Yii::$app->user->identity->status->id == 1,
                         'items' => [
                             ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii'],],
                             ['label' => 'Отладка', 'icon' => 'dashboard', 'url' => ['/debug'],],
-                            [
-                                'label' => 'Level One',
-                                'icon' => 'circle-o',
-                                'url' => '#',
-                                'items' => [
-                                    ['label' => 'Level Two', 'icon' => 'circle-o', 'url' => '#',],
-                                    [
-                                        'label' => 'Level Two',
-                                        'icon' => 'circle-o',
-                                        'url' => '#',
-                                        'items' => [
-                                            ['label' => 'Level Three', 'icon' => 'circle-o', 'url' => '#',],
-                                            ['label' => 'Level Three', 'icon' => 'circle-o', 'url' => '#',],
-                                        ],
-                                    ],
-                                ],
-                            ],
+//                            [
+//                                'label' => 'Level One',
+//                                'icon' => 'circle-o',
+//                                'url' => '#',
+//                                'items' => [
+//                                    ['label' => 'Level Two', 'icon' => 'circle-o', 'url' => '#',],
+//                                    [
+//                                        'label' => 'Level Two',
+//                                        'icon' => 'circle-o',
+//                                        'url' => '#',
+//                                        'items' => [
+//                                            ['label' => 'Level Three', 'icon' => 'circle-o', 'url' => '#',],
+//                                            ['label' => 'Level Three', 'icon' => 'circle-o', 'url' => '#',],
+//                                        ],
+//                                    ],
+//                                ],
+//                            ],
                         ],
                     ],
 

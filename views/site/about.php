@@ -1,7 +1,3 @@
-<?php
-use yii\helpers\Html;
-
-?>
 <div class="row">
     <div class="col-lg-4 col-md-4">
         <div class="panel panel-primary">

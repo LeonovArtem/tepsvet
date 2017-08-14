@@ -3,35 +3,34 @@
 namespace app\modules\admin\controllers;
 
 use Yii;
-use app\modules\admin\models\Catalog;
-use app\modules\admin\models\CatalogSearch;
-
+use app\modules\admin\models\Seo;
+use yii\data\ActiveDataProvider;
+use app\modules\admin\controllers\AppAdminController;
 use yii\web\NotFoundHttpException;
-
+use yii\filters\VerbFilter;
 
 /**
- * CatalogController implements the CRUD actions for Catalog model.
+ * SeoController implements the CRUD actions for Seo model.
  */
-class CatalogController extends AppAdminController
+class SeoController extends AppAdminController
 {
-
     /**
-     * Lists all Catalog models.
+     * Lists all Seo models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new CatalogSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider = new ActiveDataProvider([
+            'query' => Seo::find(),
+        ]);
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
 
     /**
-     * Displays a single Catalog model.
+     * Displays a single Seo model.
      * @param integer $id
      * @return mixed
      */
@@ -43,18 +42,16 @@ class CatalogController extends AppAdminController
     }
 
     /**
-     * Creates a new Catalog model.
+     * Creates a new Seo model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Catalog();
+        $model = new Seo();
 
-        if ($model->load(Yii::$app->request->post())) {
-            $model->setFileSize($model->file_puth_pdf);
-            if ($model->save())
-                return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -63,7 +60,7 @@ class CatalogController extends AppAdminController
     }
 
     /**
-     * Updates an existing Catalog model.
+     * Updates an existing Seo model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -72,10 +69,8 @@ class CatalogController extends AppAdminController
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post())) {
-            $model->setFileSize($model->file_puth_pdf);
-            if ($model->save())
-                return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -84,7 +79,7 @@ class CatalogController extends AppAdminController
     }
 
     /**
-     * Deletes an existing Catalog model.
+     * Deletes an existing Seo model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -97,15 +92,15 @@ class CatalogController extends AppAdminController
     }
 
     /**
-     * Finds the Catalog model based on its primary key value.
+     * Finds the Seo model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Catalog the loaded model
+     * @return Seo the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Catalog::findOne($id)) !== null) {
+        if (($model = Seo::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
