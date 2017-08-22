@@ -57,7 +57,8 @@ $this->title = Yii::$app->name;
                     ресурсов.</p>
 
                 <p>
-                    <?= Html::a('Рассчитать экономию', ['site/catalog', ['calculate' => 'y']], ['class' => 'btn btn-primary']); ?>
+                    <!--                    --><? //= Html::a('Рассчитать экономию', ['site/catalog', 'calculate' => 'y'], ['class' => 'btn btn-primary']); ?>
+                    <?= Html::a('Рассчитать экономию', ['catalog/calculate'], ['class' => 'btn btn-primary']); ?>
                 </p>
             </div>
 

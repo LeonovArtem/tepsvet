@@ -25,6 +25,16 @@ $config = [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
+//        'cache' => [
+//            'class' => 'yii\caching\MemCache',
+//            'servers' => [
+//                [
+//                    'host' => 'localhost',
+//                    'port' => 11211,
+//                ],
+//            ],
+//            'useMemcached' => true,
+//        ],
         'user' => [
             'identityClass' => 'app\models\User',
             'enableAutoLogin' => true,
@@ -52,7 +62,7 @@ $config = [
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
-            'suffix' => '.html',
+//            'suffix' => '.html',
 //            'enableStrictParsing' => true,
             'rules' => [
                 [

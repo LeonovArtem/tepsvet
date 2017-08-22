@@ -9,12 +9,12 @@ $this->params['breadcrumbs'][] = 'Админка'; ?>
 <div class="admin-default-index">
     <!--        <h1>--><? //= $this->context->action->uniqueId ?><!--</h1>-->
     <div class="box-header with-border">
-        <h3 class="box-title">Документация по использованию:</h3>
+        <!--        <h3 class="box-title">Документация по использованию:</h3>-->
     </div>
     <br>
     <div class="row">
         <div class="col-lg-3 col-xs-6">
-            <a href="">
+            <a href="<?= Url::toRoute(['lamps/']) ?>">
                 <div class="small-box bg-aqua">
 
                     <div class="inner">
@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = 'Админка'; ?>
             </a>
         </div>
         <div class="col-lg-3 col-xs-6">
-            <a href="">
+            <a href="<?= Url::toRoute(['catalog/']) ?>">
                 <div class="small-box bg-green">
 
                     <div class="inner">
@@ -51,7 +51,7 @@ $this->params['breadcrumbs'][] = 'Админка'; ?>
         </div>
 
         <div class="col-lg-3 col-xs-6">
-            <a href="">
+            <a href="<?= Url::toRoute(['slider/']) ?>">
                 <div class="small-box bg-yellow">
 
                     <div class="inner">
@@ -70,7 +70,7 @@ $this->params['breadcrumbs'][] = 'Админка'; ?>
         </div>
 
         <div class="col-lg-3 col-xs-6">
-            <a href="">
+            <a href="<?= Url::toRoute(['advice/']) ?>">
                 <div class="small-box bg-red">
 
                     <div class="inner">
@@ -91,9 +91,9 @@ $this->params['breadcrumbs'][] = 'Админка'; ?>
     </div>
 
 </div>
-<h1><? $avatar= Yii::$app->user->identity->img_profil ?></h1>
+<h1><? $avatar = Yii::$app->user->identity->img_profil ?></h1>
 
-<section class="col-lg-9 connectedSortable ui-sortable">
+<section class="col-lg-6 connectedSortable ui-sortable">
     <?= ChatRoom::widget([
         'url' => Url::to(['default/send-chat']),
         'userModel' => User::className(),

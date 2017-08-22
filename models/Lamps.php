@@ -7,6 +7,7 @@ use yii\db\ActiveRecord;
 class Lamps extends ActiveRecord
 {
     static $tableLams;
+    public $quantity;
 
     public static function getTable()
     {
@@ -28,6 +29,11 @@ class Lamps extends ActiveRecord
             $lamp->article = self::convertArticle($lamp->name);
             $lamp->save();
         }
+    }
+
+    public function setQuantity($quantity)
+    {
+        $this->quantity = $quantity;
     }
 
     public static function delArticleInName()

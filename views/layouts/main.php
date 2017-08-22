@@ -38,7 +38,7 @@ AppAsset::register($this);
         'items' => [
             ['label' => 'Главная', 'url' => ['/site/index']],
             ['label' => 'О нас', 'url' => ['/site/about']],
-            ['label' => 'Каталог', 'url' => ['/site/catalog']],
+            ['label' => 'Каталог', 'url' => ['/catalog']],
             ['label' => 'Технологии', 'url' => ['/site/hightech']],
             ['label' => 'Экономия', 'url' => ['/site/profit']],
             ['label' => 'Вакансии', 'url' => ['/site/jobs']],
@@ -47,7 +47,7 @@ AppAsset::register($this);
             Yii::$app->user->isGuest ? (
             ['label' => 'Войти', 'url' => ['/site/login']]
             ) : (
-            ['label' => 'В сети: ( '.Yii::$app->user->identity->username .' )', 'url' => ['/site/logout', ['method' => 'POST']],
+            ['label' => 'В сети: ( ' . Yii::$app->user->identity->username . ' )', 'url' => ['/site/logout', ['method' => 'POST']],
                 'items' => [
                     ['label' => 'Панель администартора', 'url' => ['/admin']],
                     ('<li>'
@@ -77,10 +77,12 @@ AppAsset::register($this);
 <footer class="footer">
     <div class="container text-info">
         <!--        <h4 class="pull-left">&copy; Теплый свет --><? //= date('Y') ?><!--</h4>-->
-        <div class="pull-left">
-            <p><span class="glyphicon glyphicon-map-marker"></span> г. Москва, ул. Мастеркова, д. 4</p>
+        <div class="row">
+            <div class="col-md-6 col-sm-6"><span class="glyphicon glyphicon-map-marker"></span> г. Москва, ул. Мастеркова, д.4
+            </div>
+            <div class="col-md-6 col-sm-6 text-right"><span class="glyphicon glyphicon-phone-alt"></span> +7 495 981-06-15</div>
         </div>
-        <p class="pull-right"><span class="glyphicon glyphicon-phone-alt"></span> +7 495 981-06-15</p>
+    </div>
     </div>
 </footer>
 <!--Document Scroll arrow-->

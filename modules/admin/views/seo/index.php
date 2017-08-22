@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="seo-index">
 
     <p>
-        <?= Html::a('Добавить ' . '<span class="fa fa-plus"> </span>', ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Добавить ' . '<span class="fa fa-plus"> </span>', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php Pjax::begin(); ?>    <?= GridView::widget([

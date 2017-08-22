@@ -2,31 +2,19 @@
 
 namespace app\controllers;
 
-use phpDocumentor\Reflection\Types\This;
-use yii\helpers\Html;
 use Yii;
 use yii\filters\AccessControl;
-use yii\web\Controller;
 use yii\filters\VerbFilter;
-use yii\data\Pagination;
+//use yii\data\Pagination;
 
 use app\models\LoginForm;
-use app\models\ContactForm;
-use app\models\Seo;
-use app\models\Lamps;
 use app\models\Technologies;
 use app\models\Advice;
 use app\models\Catalog;
 use app\models\Slider;
 
-class SiteController extends Controller
+class SiteController extends SeoController
 {
-    public function beforeAction($action)
-    {
-        $this->setMetaTag($action->id);
-        return parent::beforeAction($action);
-    }
-
     /**
      * @inheritdoc
      */
@@ -170,49 +158,12 @@ class SiteController extends Controller
         return $this->render('high-tech', compact('postMenu', 'post'));
     }
 
-    public function actionCatalog($cap = '', $shape = '', $calculate = false)
-    {
-        $query = Lamps::find();
-        $this->view->title = 'Каталог';
-        $this->view->params['breadcrumbs'][] = [
-            'label' => $this->view->title,
-            'url' => ['/site/catalog']
-        ];
-
-        $leftMenu = [
-            'По форме' => Lamps::getMenu('shape'),
-            'По цоколю' => Lamps::getMenu('cap'),
-        ];
-        if ($cap || $shape) {
-            $query->orFilterWhere(['cap' => $cap, 'shape' => $shape]);
-            $this->view->params['breadcrumbs'][] = $cap ? $cap : $shape;
-        }
-        $pages = new Pagination(
-            [
-                'totalCount' => $query->count(),
-                'pageSize' => 20,
-                'pageSizeParam' => false,
-                'forcePageParam' => false
-            ]);
-        $lamps = $query->asArray()->offset($pages->offset)->limit($pages->limit)->all();
-        if ($calculate) {
-            $view = 'calculate';
-        } else {
-            $view = 'catalog';
-        }
-        return $this->render($view, compact('lamps', 'pages', 'leftMenu'));
-    }
 
     public function actionJobs()
     {
         return $this->render('jobs');
     }
 
-    public function actionTest()
-    {
-       echo $sizeMb = filesize($_SERVER['DOCUMENT_ROOT'] . '/web/uploads/catalog_pdf/cat_2017_1.pdf') ;
-//        echo round();
-    }
 
     /**
      * Displays about page.
@@ -223,28 +174,6 @@ class SiteController extends Controller
     {
 
         return $this->render('about');
-    }
-
-    private function setMetaTag($actionId)
-    {
-        $seo = Seo::find()->filterWhere(['site_action' => $actionId])->one();
-        if (isset($seo->id)) {
-            $this->view->title = $seo->title;
-            $this->view->registerMetaTag(
-                [
-                    'name' => 'keywords',
-                    'content' => $seo->keywords,
-                ]);
-            $this->view->registerMetaTag(
-                [
-                    'name' => 'description',
-                    'content' => $seo->description,
-                ]);
-            $this->view->params['breadcrumbs'][] = $this->view->title;
-
-            return true;
-        }
-        return false;
     }
 
 }
