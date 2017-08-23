@@ -3,7 +3,7 @@ use yii\bootstrap\Carousel;
 use yii\helpers\Html;
 use app\components\ThumbnailCatalogWidget;
 
-$this->title = Yii::$app->name;
+//$this->title = Yii::$app->name;
 ?>
 <div class="site-index">
     <div class="body-content">
