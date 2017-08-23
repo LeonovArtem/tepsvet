@@ -19,7 +19,7 @@ $config = [
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
-//            'baseUrl'=> '',         //убираем {web} из url
+            'baseUrl' => '',         //убираем {web} из url
             'cookieValidationKey' => 'kydUc4_bNtCDn-EUc1_yoYNiFbP0wMIp',
         ],
         'cache' => [
@@ -62,17 +62,22 @@ $config = [
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
-//            'suffix' => '.html',
+            'suffix' => '.html',
 //            'enableStrictParsing' => true,
             'rules' => [
+                'admin' => 'admin/default',
+                'catalog' => 'catalog/',
+//                'catalog/calculate' => 'catalog/calculate',
+                'hightech/<url:.+>' => 'site/hightech',
+                'advice/<url:.+>' => 'site/advice',
                 [
                     'pattern' => '(hightech | advice)/<url:\w+>',
                     'route' => 'site/(hightech | advice)',
                 ],
                 '<action>/page/<page:\d+>' => 'site/<action>',
                 '<controller>/page/<page:\d+>' => '<controller>/index',
-//                '<action:\w+>' => 'site/<action>',
-//                '' => 'site/index',
+                '' => 'site/index',
+                '<action:\w+>' => 'site/<action>',
 
 
             ],

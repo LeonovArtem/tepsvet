@@ -3,9 +3,6 @@ use yii\bootstrap\Carousel;
 use yii\helpers\Html;
 use app\components\ThumbnailCatalogWidget;
 
-$this->title = 'Экономия';
-$this->params['breadcrumbs'][] = $this->title;
-
 ?>
 <div class="row text-center">
     <div class="col-lg-6 col-md-6">
@@ -13,7 +10,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="panel-heading"><h4><span class="glyphicon glyphicon-thumbs-up"></span> Петров решил проблему
                 </h4></div>
             <div class="list-group">
-                <a href="#" class="list-group-item">
+                <a href="<?=\yii\helpers\Url::to(['catalog/calculate'])?>" class="list-group-item">
                     <h4 class="list-group-item-heading"><span class="glyphicon glyphicon-pencil"></span> Рассчитать
                         экономию</h4>
                 </a>

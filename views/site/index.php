@@ -3,7 +3,7 @@ use yii\bootstrap\Carousel;
 use yii\helpers\Html;
 use app\components\ThumbnailCatalogWidget;
 
-$this->title = Yii::$app->name;
+//$this->title = Yii::$app->name;
 ?>
 <div class="site-index">
     <div class="body-content">
@@ -58,7 +58,7 @@ $this->title = Yii::$app->name;
 
                 <p>
                     <!--                    --><? //= Html::a('Рассчитать экономию', ['site/catalog', 'calculate' => 'y'], ['class' => 'btn btn-primary']); ?>
-                    <?= Html::a('Рассчитать экономию', ['catalog/calculate'], ['class' => 'btn btn-primary']); ?>
+                    <?= Html::a('Рассчитать экономию', ['catalog/calculate'], ['class' => 'btn btn-primary btn-block']); ?>
                 </p>
             </div>
 

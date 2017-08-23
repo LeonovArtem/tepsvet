@@ -32,7 +32,8 @@ class SeoController extends Controller
                     'name' => 'description',
                     'content' => $seo->description,
                 ]);
-            $this->view->params['breadcrumbs'][] = $this->view->title;
+            if ($seo->site_action != 'index')
+                $this->view->params['breadcrumbs'][] = $this->view->title;
 
             return true;
         }

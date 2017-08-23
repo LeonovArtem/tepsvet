@@ -1,32 +1,16 @@
 # phpstorm project files
 .idea
-
-# netbeans project files
-nbproject
-
-# zend studio for eclipse project files
-.buildpath
-.project
-.settings
-
-# windows thumbnail cache
-Thumbs.db
-
 # composer vendor dir
 /vendor
-
-# composer itself is not needed
-composer.phar
-
-# Mac DS_Store Files
-.DS_Store
-
-# phpunit itself is not needed
-phpunit.phar
-# local phpunit config
-/phpunit.xml
-
 tests/_output/*
-tests/_support/_generated
-#/web/img/
-/key-api-google.txt
+
+/composer.lock
+#web/files/
+#web/uploads/catalog_img/.quarantine/
+#web/uploads/catalog_pdf/.quarantine/
+#web/uploads/slider/.quarantine/
+#web/uploads/user/.quarantine/
+#web/uploads/user/4/.quarantine/
+#web/uploads/user/5/.quarantine/
+#web/uploads/user/7/.quarantine/
+#web/uploads/user/8/.quarantine/

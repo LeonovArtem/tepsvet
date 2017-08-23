@@ -86,7 +86,7 @@ AppAsset::register($this);
     </div>
 </footer>
 <!--Document Scroll arrow-->
-<a id="go-to-top" href="#" class="btn btn-primary btn-lg go-to-top" role="button" title="Незамедлительно вверх">
+<a id="go-to-top" href="#" class="btn btn-primary btn-lg go-to-top" role="button" title="Вверх">
     <span class="glyphicon glyphicon-chevron-up"></span>
 </a>
 <?php $this->endBody() ?>
