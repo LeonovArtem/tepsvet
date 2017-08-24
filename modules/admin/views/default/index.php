@@ -1,5 +1,5 @@
 <?php
-use sintret\chat\ChatRoom;
+use app\components\chat\ChatRoom;
 use yii\helpers\Url;
 use \app\modules\admin\models\User;
 
@@ -7,7 +7,7 @@ $this->title = 'Админка';
 $this->params['breadcrumbs'][] = 'Админка'; ?>
 
 <div class="admin-default-index">
-    <!--        <h1>--><? //= $this->context->action->uniqueId ?><!--</h1>-->
+
     <div class="box-header with-border">
         <!--        <h3 class="box-title">Документация по использованию:</h3>-->
     </div>

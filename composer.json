@@ -28,7 +28,8 @@
     "mihaildev/yii2-elfinder": "*",
     "voime/yii2-google-maps": "*",
     "egeloen/google-map": "*",
-    "sintret/yii2-chat-adminlte": "dev-master"
+    "sintret/yii2-chat-adminlte": "dev-master",
+    "cinghie/yii2-admin-lte": "*"
   },
   "require-dev": {
     "yiisoft/yii2-debug": "~2.0.0",
