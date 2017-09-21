@@ -50,7 +50,7 @@ use yii\widgets\Pjax;
                     <div class="list-group-item">
                         <?= Html::submitButton('Расчитать', ['class' => 'btn btn-info btn-block getCalculateModal', 'name' => 'calculate-button']) ?>
                     </div>
-                    <div class="list-group-item">
+                    <div class="list-group-item table-catalog">
                         <?php if (isset($cartGoods['goods'])): ?>
                             <?php Modal::begin([
                                 'id' => 'calculate-modal',
@@ -64,7 +64,7 @@ use yii\widgets\Pjax;
                                 <p>Среднее время работы ламп в течение суток: <strong><?= $cartGoods->hourDay; ?>
                                         час.</strong></p>
                             </div>
-                            <table class="table table-bordered table-hover table-condensed table-catalog">
+                            <table class="table table-bordered table-hover table-condensed">
                                 <thead>
                                 <tr>
                                     <td>№</td>

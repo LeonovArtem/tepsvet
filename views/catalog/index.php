@@ -14,8 +14,8 @@ use yii\helpers\Html;
             <?= LeftMenuWidget::widget(['sections' => $leftMenu]); ?>
         </div>
     </div>
-    <div class="col-lg-10 col-md-10">
-        <table class="table table-bordered table-hover table-condensed table-catalog">
+    <div class="col-lg-10 col-md-10 table-catalog">
+        <table class="table table-bordered table-hover table-condensed">
             <thead>
             <tr>
                 <th rowspan="2">№</th>
